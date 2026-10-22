@@ -2,6 +2,7 @@ package ec.edu.uce.pa.paquete;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
@@ -10,31 +11,14 @@ import jakarta.inject.Singleton;
 // @Singleton
 public class PedidoService {
 
-    // Inyeccion de dependencia por atributo
-    /*
-     * @Inject
-     * private MailService mailService;
-     * 
-     * private MailService mailService;
-     * 
-     * // Inyeccion de dependencia por constructor
-     * 
-     * @Inject
-     * public PedidoService(MailService mailService) {
-     * this.mailService = mailService;
-     * 
-     * }
-     */
-    private MailService mailService;
-
-    //Inyeccion de dependencia por setter
+ /* 
     @Inject 
-    public void setMailService(MailService mailService) {
-        System.out.println("Se esta inyectando el servicio de correo electronico service");
-        this.mailService = mailService;
-    }
+    private MailService diferente;*/
 
     public void realizar(Pedido pedido) {
+
+        // Lookup de la clase MailService
+        MailService mailService = CDI.current().select(MailService.class).get();
 
         System.out.println("Realizando pedido...");
 
@@ -49,7 +33,7 @@ public class PedidoService {
         String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + "'" + pedido.getProducto() + "'" +
                 " por un total de $" + pedido.getTotal() + " ha sido realizado con éxito.";
 
-        this.mailService.enviar(pedido.getCorreo(), asunto, cuerpo);
+        mailService.enviar(pedido.getCorreo(), asunto, cuerpo);
 
     }
 
