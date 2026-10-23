@@ -4,37 +4,37 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.inject.spi.CDI;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.inject.Singleton;
 
-@ApplicationScoped // Delego el control al contenedor ArC
-// @RequestScoped //Para aplicaciones web
-// @Singleton
+@ApplicationScoped //Delego el control al contenedor ArC
+//@RequestScoped //para aplicaciones web
+//@Singleton 
 public class PedidoService {
-
- /* 
     @Inject 
-    private MailService diferente;*/
+    @Named("mail")
+    private MailService notificacionCorreo;
 
-    public void realizar(Pedido pedido) {
+    @Inject 
+    @Named("sms")
+    private SMSService notificacionSMS;
 
-        // Lookup de la clase MailService
-        MailService mailService = CDI.current().select(MailService.class).get();
-
+public void realizar(Pedido pedido){
+ 
         System.out.println("Realizando pedido...");
-
         System.out.println("Pedido realizado al cliente: " + pedido.getCliente());
         System.out.println("Producto: " + pedido.getProducto());
         System.out.println("Total: " + pedido.getTotal());
         System.out.println("Correo: " + pedido.getCorreo());
-
         System.out.println("Pedido realizado con exito.");
-
-        String asunto = "Configuración de pedido.";
+  
         String cuerpo = "Estimado " + pedido.getCliente() + ", su pedido de " + "'" + pedido.getProducto() + "'" +
-                " por un total de $" + pedido.getTotal() + " ha sido realizado con éxito.";
+        " por un total de $" + pedido.getTotal() + " ha sido realizado con éxito.";
+ 
+        //Notificacion de pedido por correo electronico
+        this.notificacionCorreo.enviar(pedido.getCorreo(), cuerpo);
 
-        mailService.enviar(pedido.getCorreo(), asunto, cuerpo);
-
+        //Notificacion de pedido por SMS
+        this.notificacionSMS.enviar(pedido.getTelefono(), cuerpo);
     }
-
 }
