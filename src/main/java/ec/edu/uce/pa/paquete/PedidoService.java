@@ -12,7 +12,7 @@ import jakarta.inject.Singleton;
 // @Singleton
 public class PedidoService {
     @Inject
-    @Named("mail")
+    @Named("mail") //Se inyecta la implementación
     private MailService notificacionCorreo;
 
     @Inject
@@ -33,6 +33,9 @@ public class PedidoService {
 
         // Notificacion de pedido por correo electronico
         this.notificacionCorreo.enviar(pedido.getCorreo(), cuerpo);
+        this.notificacionCorreo.setCantidad(this.notificacionCorreo.getCantidad() + 1);
+        System.out.println("Cantidad de correos enviados: " + this.notificacionCorreo.getCantidad());
+        this.notificacionCorreo.setNombre("Correo de pedido");
 
         // Notificacion de pedido por SMS
         this.notificacionSMS.enviar(pedido.getTelefono(), cuerpo);
