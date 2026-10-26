@@ -22,7 +22,6 @@ public class VentaService {
     }
 
     @Inject
-
     public VentaService(@Named("regular") CalculadoraDescuento descuentoRegular,
             @Named("vip") CalculadoraDescuento descuentoVIP) {
         this.descuentoRegular = descuentoRegular;
@@ -46,13 +45,11 @@ public class VentaService {
                 + ", se realizo con éxito a un cliente '" + tipoCliente + "' \n" +
                 "por lo cual se aplica un descuento de $" + descuento + " por lo que su total a cancelar es de $"
                 + total + "\n");
+
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 }
