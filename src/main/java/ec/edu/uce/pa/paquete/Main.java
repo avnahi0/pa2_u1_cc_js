@@ -5,14 +5,11 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 
-//@QuarkusMain
+@QuarkusMain
 public class Main implements QuarkusApplication {
 
-    @Inject 
+    @Inject
     private PedidoService pedidoService;
-
-    @Inject 
-    private CompraService compraService;
 
     public static void main(String[] args) {
 
@@ -23,15 +20,11 @@ public class Main implements QuarkusApplication {
     @Override
     public int run(String... arg) {
 
-        System.out.println("Iniciando aplicación Quarkus...");
+        System.out.println("Iniciando aplicación Quarkus... \n");
 
-        Pedido pedido = new Pedido("avnahi", "Laptop", 1500.00, "j.oos@gmail.com");
+        Pedido pedido = new Pedido("avnahi", "Laptop", 1500.00, "avn_ahi@gmail.com");
         pedido.setTelefono("09999999999");
-        this.pedidoService.realizar(pedido);
-
-        Compra compra = new Compra("Joss", "Smart TV", 1201.5, "avn.ahi@gmail.com");
-        compra.setTelefono("0999999999");
-        this.compraService.realizar(compra);
+        this.pedidoService.realizar(pedido, "^^");
 
         return 0;
     }
