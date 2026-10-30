@@ -26,7 +26,7 @@ public class AuditoriaInterceptor {
         Object resultado = context.proceed(); // Ejecuta el metodo interceptado
         System.out.println("Mensaje luego que se ejecuta el método interceptado. \n");
 
-        System.out.println("Retorno: " + resultado);
+        System.out.println("Retorno: " + resultado + "\n");
         
         String nombreMetodo = context.getMethod().getName();
         System.out.println("Auditoria -> Se esta ejecutando el método: " + nombreMetodo);

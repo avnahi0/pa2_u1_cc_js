@@ -5,7 +5,7 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 
-//@QuarkusMain
+@QuarkusMain
 public class AppFarmacia implements QuarkusApplication {
 
     @Inject
@@ -20,7 +20,7 @@ public class AppFarmacia implements QuarkusApplication {
     @Override
     public int run(String... arg) {
 
-        System.out.println("Iniciando aplicación Quarkus...");
+        System.out.println("\nIniciando aplicación Quarkus...");
 
         Venta venta = new Venta("avnahi", "Singripal", 0.80, "avn.ahi@gmail.com");
         this.facturaService.factura(venta);
