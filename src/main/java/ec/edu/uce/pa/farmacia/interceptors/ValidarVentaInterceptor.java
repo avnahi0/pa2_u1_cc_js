@@ -4,6 +4,7 @@ import java.lang.reflect.Parameter;
 
 import ec.edu.uce.pa.farmacia.ValidarVentaService;
 import ec.edu.uce.pa.farmacia.Venta;
+import jakarta.annotation.Priority;
 import jakarta.inject.Inject;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
@@ -11,6 +12,7 @@ import jakarta.interceptor.InvocationContext;
 
 @ValidarVenta
 @Interceptor
+@Priority(IPriority.APLI3)
 public class ValidarVentaInterceptor {
 
     @Inject
