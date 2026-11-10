@@ -31,7 +31,7 @@ public class AuditoriaInterceptor {
         System.out.println("Retorno: " + resultado + "\n");
         
         String nombreMetodo = context.getMethod().getName();
-        System.out.println("Auditoria -> Se esta ejecutando el método: " + nombreMetodo);
+        System.out.println("[Auditoria] Se esta ejecutando el método: " + nombreMetodo);
         System.out.println("Ejecuto todo lo que quiero que haga el interceptor. \n");
 
         Parameter[] parametros = context.getMethod().getParameters();

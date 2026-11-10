@@ -22,7 +22,7 @@ public class MedirTiempoInterceptor {
 
         Long end = System.currentTimeMillis() - init;
 
-        System.out.println("\n [MedirTiempo] El tiempo de ejecución del es de: " + end + "\n");
+        System.out.println("\n [MedirTiempo] El tiempo de ejecución es de: " + end + "\n");
 
         return resultado;
     }

@@ -19,7 +19,7 @@ public class EnviaSMSInterceptor {
 
         Long end = System.currentTimeMillis() - init;
 
-        System.out.println("\n [EnviarSMS] El tiempo de ejecución del es de: " + end + "\n");
+        System.out.println("\n [EnviarSMS] El tiempo de ejecución es de: " + end + "\n");
 
         return resultado;
     }
